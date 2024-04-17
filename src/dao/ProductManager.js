@@ -13,7 +13,8 @@ export default class ProductManager {
     status = true,
     stock,
     category,
-    thumbnails = [], }) {
+    thumbnails = [], // tambien pasar en el body de la request como array
+  }) {
     if (!title || !description || !code || !price || !stock || !category)
       return "Check unfilled fields";
 
@@ -124,7 +125,7 @@ export default class ProductManager {
   }
 
   async updateProducts(id, productData) {
-    
+    // ---> 'PRODUCTDATA' se pasa por el body de postman<---
     let productList = await this.readData();
     let findProduct = productList.find((p) => p.id === id);
     let i = productList.indexOf(findProduct);
