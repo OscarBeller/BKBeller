@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 // Handlebars setup
 app.engine('handlebars', engine());
-app.set('views', __dirname + './views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
 app.get('/', (req,res)=>{
