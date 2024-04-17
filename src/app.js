@@ -1,19 +1,12 @@
 import express from "express";
-import products from './routers/products.js'
-import carts from './routers/carts.js'
-
+import { router as productRouter } from "./routes/productRouter.js";
+import { router as cartRouter } from "./routes/cartRouter.js";
+const PORT = 3000;
 const app = express();
-const PORT = 8080; 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json()); 
+app.use("/api/products", productRouter);
+app.use("/api/carts", cartRouter);
 
-app.get('/'  , (req, res) => {
-    res.send("BIENVENIDOS")
-});
-
-app.use('/api/products', products) ;
-app.use('/api/carts', carts) ;
-
-app.listen(PORT, () => {
-    console.log(`Corriendo aplicacion en el puerto ${PORT} `);
-}); 
+app.listen(PORT, () => console.log(`Server online en puerto:${PORT}`));
